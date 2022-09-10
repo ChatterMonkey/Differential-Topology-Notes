@@ -1,0 +1,58 @@
+\documentclass{homework}
+\author{Maya Basu}
+\class{Differential Topology}
+\title{Class Notes}
+
+\newcommand{\inte}{\text{Int}}
+\newcommand{\clos}[1]{\overline{#1}}
+\newcommand{\RR}{\mathbb{R}}
+
+\begin{document} \maketitle
+
+\section{Definition of a Topological Space, Open Sets, Closed Sets}
+
+A topological space $(X, O)$ is a set $X$ and a collection $O$ of subsets of $X$ where $o \in O$ is called an "open set" such that
+\begin{itemize}
+\item{The union of any number of elements of $O$ is also an element of $O$}
+\item{The intersection of any finite number of elements of $O$ is also an element of $O$}
+\item{$\emptyset , X \in O$}
+\end{itemize}
+The condition that only a finite number of intersections can be allowed is illistrated by $\cap_{n = \infty} \left( -\frac{1}{n},\frac{1}{n}\right) = \{0\}$
+
+A closed set is a set $S \subset X$ such that $X-S$ is open.
+
+\subsection{Examples of Topological Spaces}
+\begin{itemize}
+\item{$\mathbb{R}$ with standard topology $\rightarrow$ standard notion of open subsets are open}
+\item{$X$ is any set, $O = \{\emptyset,X\}$. This is called the "trivial topology"}
+\item{$X$ is any set and $O$ is the set of all subsets of $X$. This is called the "discrete topology"}
+\item{$X = \{1,2\}$ and $O = \{\emptyset, \{1\}, \{1,2\}\}$ is a valid topological space}
+\end{itemize}
+
+\section{Definition of continuity}
+A function $f: X \rightarrow Y$ is continuous if for each open set $O$ in $Y$, $f^{-1}(O) = \{x \in X | f(x) \in O\}$ is also open in $X$.
+\subsection{Examples involving the Continuity of Maps}
+\begin{itemize}
+\item{Suppose $(X,O_x)$ is a space with discrete topology and $(Y,O_y)$ is any topological space. Then any map $f: X \rightarrow Y$ is continuous}
+\item{Suppose $(X,O_x)$ is a trivial topology. Then a map $f: X \rightarrow \mathbb{R}$ is only continuous if it maps each $x \in X$ to a single point in $R$}
+\item{Let $X = \{x_1,x_2\}$ with discrete topology. $f: \mathbb{R} \rightarrow X$ is continuous iff $f$ maps $\mathbb{R}$ to one point in $X$. (The only sets both open and closed in $\mathbb{R}$ are $\emptyset$ and $\mathbb{R}$). Question: why is this equivalent to the intermediate value theorem?}
+\end{itemize}
+
+\section{Definition of a Neighborhood of x}
+A Neighborhood of an element $x \in X$ is a subset $N \subseteq X$ such that there exists an open $O \subseteq X$ where $x \in O \subseteq N$. 
+
+\section{Interiors and Closures}
+Let $S$ be a subset of the topological space $(X,O_x)$. 
+\subsection{Definition of an Interior}
+$\inte(S) = \cup_{O \subseteq S | O \in O_x}O$
+$\inte(S)$ (which is open as it is the union of open subsets) is the largest open subset in $S$ since if there is a hypothetical larger open subset in $S$ we know that it is actually contained in the union which constructs $\inte(S)$.
+
+\subsection{Proof: $S$ is open iff $\inte(S) = S$}
+$\inte(S) \subseteq S$. Additionally, if $S$ is open then since $S \subseteq S$, $S  \subseteq \inte(S)$. So if $S$ is open then $\inte(S) =S$. Going the other way, if $S = \inte(S) $ then $S$ is open as the union of open subsets of $S$.
+
+\subsection{Definition of a Closure}
+$\clos{S} = \cap_{S \subseteq C | C \text{ is closed in X}}$
+
+
+
+\end{document}
