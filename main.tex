@@ -6,16 +6,18 @@
 \newcommand{\inte}{\text{Int}}
 \newcommand{\clos}[1]{\overline{#1}}
 \newcommand{\RR}{\mathbb{R}}
+\newcommand{\BB}{\mathbb{B}}
+\newcommand{\OO}{\mathbb{O}}
 
 \begin{document} \maketitle
 
 \section{Definition of a Topological Space, Open Sets, Closed Sets}
 
-A topological space $(X, O)$ is a set $X$ and a collection $O$ of subsets of $X$ where $o \in O$ is called an "open set" such that
+A topological space $(X, \OO)$ is a set $X$ and a collection $\OO$ of subsets of $X$ where $O \in \OO$ is called an "open set" such that
 \begin{itemize}
-\item{The union of any number of elements of $O$ is also an element of $O$}
-\item{The intersection of any finite number of elements of $O$ is also an element of $O$}
-\item{$\emptyset , X \in O$}
+\item{The union of any number of elements of $\OO$ is also an element of $\OO$}
+\item{The intersection of any finite number of elements of $\OO$ is also an element of $\OO$}
+\item{$\emptyset , X \in \OO$}
 \end{itemize}
 The condition that only a finite number of intersections can be allowed is illistrated by $\cap_{n = \infty} \left( -\frac{1}{n},\frac{1}{n}\right) = \{0\}$
 
@@ -24,17 +26,17 @@ A closed set is a set $S \subset X$ such that $X-S$ is open.
 \subsection{Examples of Topological Spaces}
 \begin{itemize}
 \item{$\mathbb{R}$ with standard topology $\rightarrow$ standard notion of open subsets are open}
-\item{$X$ is any set, $O = \{\emptyset,X\}$. This is called the "trivial topology"}
-\item{$X$ is any set and $O$ is the set of all subsets of $X$. This is called the "discrete topology"}
-\item{$X = \{1,2\}$ and $O = \{\emptyset, \{1\}, \{1,2\}\}$ is a valid topological space}
+\item{$X$ is any set, $\OO = \{\emptyset,X\}$. This is called the "trivial topology"}
+\item{$X$ is any set and $\OO$ is the set of all subsets of $X$. This is called the "discrete topology"}
+\item{$X = \{1,2\}$ and $\OO = \{\emptyset, \{1\}, \{1,2\}\}$ is a valid topological space}
 \end{itemize}
 
 \section{Definition of continuity}
 A function $f: X \rightarrow Y$ is continuous if for each open set $O$ in $Y$, $f^{-1}(O) = \{x \in X | f(x) \in O\}$ is also open in $X$.
 \subsection{Examples involving the Continuity of Maps}
 \begin{itemize}
-\item{Suppose $(X,O_x)$ is a space with discrete topology and $(Y,O_y)$ is any topological space. Then any map $f: X \rightarrow Y$ is continuous}
-\item{Suppose $(X,O_x)$ is a trivial topology. Then a map $f: X \rightarrow \mathbb{R}$ is only continuous if it maps each $x \in X$ to a single point in $R$}
+\item{Suppose $(X,\OO_x)$ is a space with discrete topology and $(Y,\OO_y)$ is any topological space. Then any map $f: X \rightarrow Y$ is continuous}
+\item{Suppose $(X,\OO_x)$ is a trivial topology. Then a map $f: X \rightarrow \mathbb{R}$ is only continuous if it maps each $x \in X$ to a single point in $R$}
 \item{Let $X = \{x_1,x_2\}$ with discrete topology. $f: \mathbb{R} \rightarrow X$ is continuous iff $f$ maps $\mathbb{R}$ to one point in $X$. (The only sets both open and closed in $\mathbb{R}$ are $\emptyset$ and $\mathbb{R}$). Question: why is this equivalent to the intermediate value theorem?}
 \end{itemize}
 
@@ -42,9 +44,9 @@ A function $f: X \rightarrow Y$ is continuous if for each open set $O$ in $Y$, $
 A Neighborhood of an element $x \in X$ is a subset $N \subseteq X$ such that there exists an open $O \subseteq X$ where $x \in O \subseteq N$. 
 
 \section{Interiors and Closures}
-Let $S$ be a subset of the topological space $(X,O_x)$. 
+Let $S$ be a subset of the topological space $(X,\OO_x)$. 
 \subsection{Definition of an Interior}
-$\inte(S) = \cup_{O \subseteq S | O \in O_x}O$
+$\inte(S) = \cup_{O \subseteq S | O \in \OO_x}O$
 $\inte(S)$ (which is open as it is the union of open subsets) is the largest open subset in $S$ since if there is a hypothetical larger open subset in $S$ we know that it is actually contained in the union which constructs $\inte(S)$.
 
 \subsection{Proof: $S$ is open iff $\inte(S) = S$}
@@ -52,6 +54,82 @@ $\inte(S) \subseteq S$. Additionally, if $S$ is open then since $S \subseteq S$,
 
 \subsection{Definition of a Closure}
 $\clos{S} = \cap_{S \subseteq C | C \text{ is closed in X}}$
+\subsection{Proof that $\clos{S} = X - \inte(X - S)$}
+
+By definition, $X - \clos{S} = X -  \cap_{S \subseteq C | C \text{ is closed in X}} C = \cup_{S \subseteq C | C \text{ is closed in X}}(X - C) = \cup_{O| O = X - C \text{is open} }O$. Each $X - C$ is an open subsets of $X - S$ ($S \subset C$ so $X - C \subseteq X - S$). Furthermore, for every open subset $O'$ of $X -S$, $X - O'$ is a closed set with $S \subseteq X - O'$ since any point in $S$ is not in $X - S$ and $O' \subseteq X - S$ so any point in $S$ is not in $O'$. $S \subseteq X$, so $S \subset X - O'$. Thus$X - \clos{S} = \cup_{O| O = X - C \text{is open} }O = \inte{X - S}$
+
+\question Why is $\clos{S}$ the smallest closed set containing $S$?
+
+\subsection{Definition of a Boundary}
+
+$\partial S = \clos{S} - \inte(S)$ is the boundary of $S$
+
+\section{Basis of Topology}
+A basis of topology is a collection $\BB$ of subsets of $X$ satisfying:
+\begin{itemize}
+    \item For every point $x \in X$ there exists a $B \in \BB$ such that $x \in B$. 
+    \item For every pair $B_1, B_2 \in \BB$ and each point $x \in B_1 \cap B_2$ there exists a $B_3 \in \BB$ such that $x \in B_3 \subseteq B_1 \cap B_2$.
+\end{itemize}
+
+\subsection{Proof: If $\BB$ is a basis of topology, then $(X, \OO)$ where $\OO$ is the set of all unions of sets in $\BB$ is a topological space. }
+
+For any $O_1,O_2 \in \OO$, $O_1 \cup O_2$ is also in $\OO$ (still a union of sets in $\BB$). Additionally, consider a $x \in O_1 \cup O_2$. Then $x \in B_1$ and $x \in B_2$ for some $B_1 \subseteq O_1$ and $B_2 \subseteq O_2$. Then $x \in B_1 \cap B_2$ so there exists a $B_3 \in \BB$ such that $x \in B_3$ and $B_3 \subseteq B_1 \cap B_2$. So taking the union of all of these subsets $B_3$ (one for each $x \in O_1 \cap O_2$) we find that $O_1 \cap O_2$ is open as it is the union of sets in $\BB$. 
+
+By induction, a finite number of intersections of sets in $\OO$ is in $\OO$, so then $(X, \OO)$ is a topological space. 
+
+\subsection{Proof: $O \in \OO_{\BB}$ (the set of open sets as defined by a topological basis $\BB$) iff for every $x \in O$ there exists a $B_x \in \BB$ such that $x \in B_x \subseteq O$}
+
+If the given statement is true then $O$ can be constructed as the union of the sets $B_x$ so it is open by definition. Conversely, if $O$ is open then it is equal to a union of subsets $B_i \in \BB$. Each point in $O$ then is inside one of these $B_i$ which is open by definition.
+
+\section{Definition of a Metric Space}
+
+A metric space is a pair $(X,d)$ with $d: X \times X \rightarrow \RR$ where:
+\begin{itemize}
+    \item $d(x,y) = d(y,x)$
+    \item $d(x,y) \ge 0$, equality holds iff $x = y$
+    \item $d(x,y) \leq d(x,z) + d(z,y)$
+\end{itemize}
+
+$B_r(x) = \{y \in X|d(x,y) <r\}$ is an open ball of radius $r$ in the metric space $(X,d)$.
+
+For any metric space the collection of all open balls in a basis of topology.
+
+A subset $S$ of a metric space is open iff for every $x \in S$, then there exists $r>0$ such that $B_r(x) \subseteq S$
+
+\section{Subspaces}
+
+
+Consider a topological space $(X, \OO)$ with a subset $Y \sebseteq X$. Then $O \subseteq Y$ is open in the subspace topology if there exists a $O' \subseteq X$ with $O = A \cup O'$.
+
+We can obtain a basis of topology for $Y$ by taking $B_{Y_i} = B_i \cup A.$
+
+If $X$ is a metric space we can obtain a metric $d_Y$ on $Y$ by restricting the domain of $d$ to $Y$  so that $(Y,d_Y)$ is also a metric space.
+
+
+\section{Definition of a Homeomorphism}
+
+Definition 1: A Homeomorphism $f:X \rightarrow Y$ such that 
+\begin{itemize}
+    \item {f is a bijection}
+    \item{For any $S \subseteq X$, $f(S)$ is open iff $S \in \OO$. (Equivalently, $f^{-1}(S)$ is open iff $S$ is open}
+\end{itemize}
+
+Definition 2: $f: X \rightarrow Y$ is a homeomorphism if $f$ is invertable and both $f$, $f^{-1}$ are continuous. 
+
+We must require that $f^{-1}$ is also continuous
+
+
+
+
+\subsection{Properties of Homeomorphisms}
+
+\begin{itemize}
+    \item $X$ is homeomorphic to $X$ - we use the itentity function and the same topology on both copies of $X$. 
+\end{itemize}
+
+
+
+
 
 
 
