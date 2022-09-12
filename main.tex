@@ -106,6 +106,54 @@ We can obtain a basis of topology for $Y$ by taking $B_{Y_i} = B_i \cup A.$
 If $X$ is a metric space we can obtain a metric $d_Y$ on $Y$ by restricting the domain of $d$ to $Y$  so that $(Y,d_Y)$ is also a metric space.
 
 
+
+
+\subsection{Alternate View of the Subspace Topology}
+
+Consider the inclusion map $i: Y \rightarrow X$ which sends $y_{\text{in y}} \rightarrow y_{\text{in X}}$. We define $\OO_y$ as the smallest (as a set) topology such that $i$ is continuous. 
+
+Question: why the smallet? Discrete topology would not be unique - why?
+
+\subsubsection{Proving existance of such a topology:}
+For every $O \subset X$ where $O$ is open we have that $i^{-1}(S)$
+
+
+\section{Products}
+
+Let $X_1,X_2$ be topological spaces, we consider $X_1 \times X_2$. 
+
+\subsection{Projections}
+The projection maps $P_k:X_1 \times X_2 \rightarrow X_k$ for $k \in \{1,2\}$, $P_k(x_1,x_2) = x_k$. 
+
+\subsection{Topology on a product space}
+For the topology on $X_1 \times X_2$ we pick the smallest topology such that $P_1$ and $P_2$ are continuous
+
+\question Why do we pick the smallest topology?
+
+If $P_1$ and $P_2$ are continuous then for an open set $O_{X_1}$ in $X_1$ and an open $O_{X_2}$ in $X_2$ we must have that $P_1^{-1} = O_{X_1} \times X_2$ is open and that $P_2^{-1} = X_1 \times O_{X_2}$ is open. Taking the intersection of $O_{X_1} \times X_2$ and $X_1 \times O_{X_2}$ we get $O_{X_1} \times O_{X_2}$ is open. 
+
+
+The collection $\{O_{X_1} \times O_{X_2} | O_{X_k} \text{ is open in } X_k$ is not a topology, however it is a basis of topology - the "product topology".
+
+For example, $\RR^2$ has a topologies defined in $2$ ways, using the euclidian metric, and the product topology of the standard topologies of $\RR$.
+
+\subsubsection{The euclidean metric $\OO_{st}$ and the product topologys $\OO_P$ on $\RR$ are the same}
+
+The basis given by the standard topology $\BB_{st}$ is the collection of open balls.
+
+The basis given by the product topology $\BB_P$ is the collection of products of open subsets in $\RR$.
+
+Now consider an element of $\BB_{st}$ which is an open ball, and a point $B \in B_{st}$. We can surround $B$ by an open rectangle entierly in $B_{st}$
+
+
+
+
+
+
+
+
+
+
 \section{Definition of a Homeomorphism}
 
 Definition 1: A Homeomorphism $f:X \rightarrow Y$ such that 
@@ -124,12 +172,47 @@ We must require that $f^{-1}$ is also continuous
 \subsection{Properties of Homeomorphisms}
 
 \begin{itemize}
-    \item $X$ is homeomorphic to $X$ - we use the itentity function and the same topology on both copies of $X$. 
+    \item $X$ is homeomorphic to $X$ - we use the identity function and the same topology on both copies of $X$. 
+    \item $X$ is homeomorphic to $Y$ iff $Y$ is homeomorphic to $X$ - if $f$ is a homeomorphism then $f^{-1}$ exists and is also a homeomorphism.
+    \item If $X$ is homeomorphic to $Y$ and $Y$ is homeomorphic to $Z$ then $X$ is homeomorphic to $Z$ 
+    
+    Proof: 
+    
+    Since $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ are continuous maps their composition is continuous since for any open subset $O_z$ of $Z$, $g^{-1}(O_z)$ is an open subset of $Y$, so $f^{-1}g^{-1}(O_z)$ is an open subset of $X$. Additionally, $f^{-1}$ and $g^{-1}$ exist and are continuous so $f \circ g$ is continuous and $(f \circ g)^{-1}$ is continuous. Finally, the existance of $(f \circ g)^{-1}$ implie $f \circ g$ is invertable so $X$ is homeomorphic to $Z$.
+
+    
+
+    
 \end{itemize}
 
 
+\section{Connectedness}
+
+If $X$ satisfies any one of the following (equivelent) properties then it is disconnected. If $X$ is not disconnected, it is connected. 
+
+\begin{enumerate}
+    \item There is a continuous, non-constant map $f:X \rightarrow \{1,2\}$ where $\{1,2\}$ has discrete topology.
+    \item $X$ is homeomorphic to $Y \sqcup Z$, $Y$ and $Z$ are nonempty topological spaces
+    \item {There are nonempty open sets $O_1,O_2 \subset X$ such that $O_1 \cup O_2 = X$ and $O_1 \cap O_2 = \emptyset$}
+    \item {There are nonempty closed subsets $C_1,C_2 \subset X$ such that  $C_1 \cup C_2 = X$ and $C_1 \cap C_2 = \emptyset$}
+    \item{There is a subset $S \subset X$, $S \neq \emptyset$ and $S \neq X$ that is both closed and open}
+    
+\end{enumerate}
+
+$3$, $4$, and $5$ are clearly equivalent using the fact that the complement of an open set is closed. 
+
+$3$ implies $2$ by giving $O_1,O_2$ subset topology and choosing the identity map as the homeomorphism and $2$ implies $3$ by taking the disjoint sets in $3$ to be the preimages of the two spaces from $2$.
+
+$3$ implies $1$ since we can take the (continuous) map $O_i$ to $i$, and to get from $1$ to $3$ we define $O_i$ as the preimage of $i$. 
+
+\subsection{Path Connectedness}
+
+Definition: $X$ is path connected if for any points $a,b$ in $X$ there is a path connecting $a$ and $b$ in $X$. 
 
 
+\subsection{A path connected space is connected}
+
+Suppose that $X$ is a path connected but disconnected space. Then let $O_1,O_2 \subset X$ be non empty sopen subsets satisfying $3$ from above. Since these sets are non empty there exist $a \in O_1$ and $b \in O_2$ with a path connecting them.
 
 
 
