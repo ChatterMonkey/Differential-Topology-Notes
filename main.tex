@@ -62,7 +62,7 @@ By definition, $X - \clos{S} = X -  \cap_{S \subseteq C | C \text{ is closed in 
 
 \subsection{Definition of a Boundary}
 
-$\partial S = \clos{S} - \inte(S)$ is the boundary of $S$
+$\partial S = \clos{S} - \inte(S)$ is the boundary of $S$. Since $\partial S = \clos{S} - \inte(S) = \clos{S} \cap (X - \inte(S)$ is an intersection of two closed sets it is closed
 
 \section{Basis of Topology}
 A basis of topology is a collection $\BB$ of subsets of $X$ satisfying:
@@ -105,6 +105,8 @@ We can obtain a basis of topology for $Y$ by taking $B_{Y_i} = B_i \cup A.$
 
 If $X$ is a metric space we can obtain a metric $d_Y$ on $Y$ by restricting the domain of $d$ to $Y$  so that $(Y,d_Y)$ is also a metric space.
 
+The two ways of assigning a topology on the subspace of a metric space (Metric space defines topology $\rightarrow$ subset topology and Metric space gives a metric on the subset $\rightarrow$ topology by metric induced on subset) give the same topology.
+
 
 
 
@@ -116,6 +118,19 @@ Question: why the smallet? Discrete topology would not be unique - why?
 
 \subsubsection{Proving existance of such a topology:}
 For every $O \subset X$ where $O$ is open we have that $i^{-1}(S)$
+
+
+\subsection{Disjoint Union}
+Two seperate unattached subspaces sometimes the coproduct.
+Take $X_1,X_2$ to be topological spaces with no shared elements. Then we consider the disjoint union $X_1 \sqcup X_2$ (union in the sense of set theory). We wish to make this disjoint union a topology. Consider the inclusion maps
+\[i_k : X_k \rightarrow X_1 \sqcup X_2, k \in \{1,2\}\]
+We want a topology on $X_1 \sqcup X_2$ such that $i_k$ is continuous and the topology is the largest possible (Question: why largest?).
+
+If $i_k$ is continuous and $O$ is open in $X_1 \sqcup X_2$ then the preimages $O \cap X_1$ and $O \cap X_2$ must be open in $X_1$ and $X_2$ respectively. So all subsets that could be open in $X_1 \sqcap X_2$ are
+\[\{O \subseteq X_1 \sqcup X_2 |O \cap X_1 \text{ and } O \cap X_2 \text{ are open }\}\]
+
+Example: If $X$ is a finite (as a set) discrete topological space then $X = \sqcup_{x \in X} \{x\}$ where $\{x\}$ have the unique topology (only one element).
+
 
 
 \section{Products}
@@ -143,7 +158,7 @@ The basis given by the standard topology $\BB_{st}$ is the collection of open ba
 
 The basis given by the product topology $\BB_P$ is the collection of products of open subsets in $\RR$.
 
-Now consider an element of $\BB_{st}$ which is an open ball, and a point $B \in B_{st}$. We can surround $B$ by an open rectangle entierly in $B_{st}$
+Now consider an element of $\BB_{st}$ which is an open ball, and a point $B \in B_{st}$. We can surround $B$ by an open rectangle entierly in $B_{st}$ so open balls are open in the product topology. Similarly, given an element $B_{pr} = O_1 \times O_2 \times \cdots O_n$ with all open $O_i$, we take a point in this subest and surround it by an open ball entirely within $ O_1 \times O_2 \times \cdots O_n$. For each $i$ there exists $r_i > 0$ such that $B_{r_i}(y_i) \subseteq O_i$ so then $B_{r_1}(y_1) \times B_{r_2}(y_2) \times \cdots B_{r_n}(y_n) \subseteq O_1 \times O_2 \times \cdots O_n$. Taking $R = \min r_i$ we get $B_R(\overarrow{y}) $ is a subset of the set open int he product topology. Thus, the basis in the product toplogy are open in the standard topolgy so, combined with the previous argument, these are the same topologies. 
 
 
 
@@ -164,7 +179,11 @@ Definition 1: A Homeomorphism $f:X \rightarrow Y$ such that
 
 Definition 2: $f: X \rightarrow Y$ is a homeomorphism if $f$ is invertable and both $f$, $f^{-1}$ are continuous. 
 
-We must require that $f^{-1}$ is also continuous
+We must require that $f^{-1}$ is also continuous? Yes - here is a non-example
+
+Consider $f(x) = x$ for $x \in [0,1)$ and $f(x) = 1$ for $x \in \{2\}$ as it maps $[0,1) \cup \{2\}$ to $[0,1]$. This map is continuous and a bijection, however it's inverse is not continuous.
+
+However, a function like $f(x) = tan\left\frac{\pi}{2}x\right)$ is a homemorphism from $(-1,1)$ to $\RR$ since the inverse function, $f^{-1} = \arctan(y) \cdot \frac{2}{\pi}$ is also continuous
 
 
 
@@ -188,7 +207,7 @@ We must require that $f^{-1}$ is also continuous
 
 \section{Connectedness}
 
-If $X$ satisfies any one of the following (equivelent) properties then it is disconnected. If $X$ is not disconnected, it is connected. 
+If $X$ satisfies any one of the following (equivelent) properties then it is disconnected. If $X$ is not disconnected, it is connected. Being connected or not depends only on topological type, it does not change under homeomorphism.
 
 \begin{enumerate}
     \item There is a continuous, non-constant map $f:X \rightarrow \{1,2\}$ where $\{1,2\}$ has discrete topology.
@@ -212,8 +231,51 @@ Definition: $X$ is path connected if for any points $a,b$ in $X$ there is a path
 
 \subsection{A path connected space is connected}
 
-Suppose that $X$ is a path connected but disconnected space. Then let $O_1,O_2 \subset X$ be non empty sopen subsets satisfying $3$ from above. Since these sets are non empty there exist $a \in O_1$ and $b \in O_2$ with a path connecting them.
+Suppose that $X$ is a path connected but disconnected space. Then let $O_1,O_2 \subset X$ be non empty sopen subsets satisfying $3$ from above. Since these sets are non empty there exist $a \in O_1$ and $b \in O_2$ with a path connecting them. Let us take $\gamma: [0,1]$ in $X$ connecting $a$ and $b$. Then $S_1 = \gamma^{-1}(O_1)$ is open since $\gamma$ is continuous, and nonempty since $\gamma(0) = a \in O_1$. Similarly, $S_2 = \gamma^{-1}(O_2)$ is also open and nonempty. Additionally, $S_1 \cup S_2 = [0,1]$ and $S_1 \cap S_2 = \emptyset$ so $[0,1]$ must be disconnected. But $[0,1]$ is connected leading to a contradiction. 
 
 
+\subsection{$\mathbb{R}^n$ is connected}
+$\RR^n$ is path connected since for $\overarrow{a},\overarrow{b}$ we can take $\gamma(t) = (1 - t)\overarrow{a} + t \overarrow{b}$. Similarly, any convex subset of $R^n$ is connected, specifically open balls. 
+
+
+Are all connected spaces path conncted? No, one example is $\{(x,\sin\left(\frac{1}{x}\right) | x \in (0,\infty)\} \cup \{(0,y) | y \in [1,-1]\}$.
+
+Question: why is this an example?
+
+
+
+\subsection{$[0,1]$ is connected}
+
+We will prove this by showing equivalence to the intermediate value theorem (let $f:[a,b] \rightarrow \RR$ be a continuous map sith $f(a) < 0 < f(b)$ then $f(c) = 0$ for some $c$). 
+
+
+Assume that the intermediate value theorem is false and theri exists a counter example $f$. Then let $O_1 = f^{-1}(-\infty,0)$ and $O_2 = f^{-2}(0,\infy)$. Since $f$ is continuous both of these sets are open and $O_1 \cap O_2 = \emptyset$ and $O_1 \cup O_2 = [a,b]$ since $0$ is not a value of $f$. This implies that $[a,b]$ is disconnected by $3$.
+
+We prove the other direction. if $[0,1]$ is disconnected consider the continuous, non constat map $\sigma: [0,1]$. Since $\sigma$ 
+
+
+
+
+\section{Path Connected}
+Points $a$ and $b$ in a topological space can be connected with a map $\gamma : [0,1]$ where $\gamma(0) = a$ and $\gamma(1) = b$. 
+
+Being path connected is an equivelance relation:
+\begin{itemize}
+    \item $a$ is path connected to $a$ (Take the constant map)
+    \item If $a$ is connected to $b$ then $b$ is connected to $a$ (Given $\gamma : [0,1] \rightarrow X$, $\gamma (0) = a$, $\gamma (1) = b$, take $\gamma (1-t)$ or mor formally take $I : [0,1] \rightarrow [0,1]$, $I(t) = 1- t$. $I$ is continuous so $\gamma \circ I$ is continuous)
+    \item If $a$ is connected to $b$ and $b$ is connected to $c$ then $a$ is connected to $c$
+
+\end{itemize}
+
+Question: How to prove this last relation?
+
+
+Any topological space splits (as a set) into path connected components so we can write $X = \cup C_i$ where $C_i$ is connected and $C_i \cap C_j = \emptyset$ if $i \neq j$. However, $X \neq \sqcup C_i$ as a topological space. (Question: why not?)
+
+Question: what does the axiom of choice have to do with finiteness
+
+
+
+http://individual.utoronto.ca/aaronchow/notes/mat327h1.pdf 
 
 \end{document}
