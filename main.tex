@@ -10,7 +10,7 @@
 \newcommand{\OO}{\mathbb{O}}
 
 \begin{document} \maketitle
-
+add housdorff space
 \section{Definition of a Topological Space, Open Sets, Closed Sets}
 
 A topological space $(X, \OO)$ is a set $X$ and a collection $\OO$ of subsets of $X$ where $O \in \OO$ is called an "open set" such that
@@ -275,7 +275,34 @@ Any topological space splits (as a set) into path connected components so we can
 Question: what does the axiom of choice have to do with finiteness
 
 
+\section{Compactness}
+ A space $X$ is compact if each open cover of $X$ has a finite subcover. $[a,b]$ si compact
+ If$f:X \rightarrow Y$ is continuous and onto and if $X$ is compact then so is $Y$
+ If $X$ and $y$ are comapct so are their product
+ A subspace $X \in R^n$ is compact iff it is closed and bounded
 
-http://individual.utoronto.ca/aaronchow/notes/mat327h1.pdf 
+
+\section{Hausdorff Spaces}
+
+$X$ is a hausdorff space if for each $x$, $y$ distinct in $X$, there exist open and disjoint neiborhoods of $x$ and $y$ - a subspace of a hausdorff space is hausdorff, a product of two hausdorff spaces is hausdorff. A compact subspace of a hausdorff space is closed
+
+http://individual.utoronto.ca/aaronchow/notes/mat327h1.pdf  
+
+\section{Definition of a Smooth Map}
+
+A mapping $f$ from an open set $U$ in $R^n$ to $R^m$ is called smooth if it has continuous partial derivatives of all orders. 
+
+To consider maps on subsets of $R^n$ that are not neccecerally open, we consider the extension of the map. So additionally, $f$ from any set $X \in R^n$ to $R^m$ is called smooth if for each point $x \in X$ there is an open set $U \in R^n$ and a smooth map $F: U \rightarrow R^m$ where $F$ equals $f$ on $X \cap U$. 
+
+
+\section{Diffeomorphisms}
+
+An invertable smooth map $f:X \rightarrow Y$ between subsets of euclidean spaces is a diffeomorphism if the inverse is also smooth.
+
+\section{Manifolds}
+
+A subset $X$ of $R^n$ is a manifold if it is locally diffeomorphic to $R^k$, meaning every $x \in X$ has a neiborhood $V$ in $X$ diffeomorphic to an open subset $U$ of $R^k$. In this case a differmorphism $\phi: U \rightarrow V$ is called a parameterization of $V$ and $\phi^{-1}: V \rightarrow U$ is called a coordinate system on $V$
+
+
 
 \end{document}
